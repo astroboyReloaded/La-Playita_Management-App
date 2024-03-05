@@ -7,7 +7,7 @@
   flex-direction: column;
   height: 100vh;
   width: fit-content;
-  background-color: turquoise;
+  background-color: var(--navBg);
   transition: left 0.3s ease-in-out;
 }
 
@@ -23,7 +23,7 @@
 
 .container a {
   text-decoration: none;
-  color: black;
+  color: var(--navColor);
   font-size: 1.5rem;
   font-weight: 600;
 }
