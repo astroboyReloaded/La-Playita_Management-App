@@ -1,6 +1,6 @@
 /* vars located in ./menu.module.css */
 .container {
-  position: relative;
+  position: absolute;
   top: calc(var(--navPadding) * -1);
   left: -50%;
   display: flex;
