@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 30px;
+  width: 30px;
+  border: none;
+  background-color: transparent;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+  cursor: pointer;
+}
+
+.bar,
+.bar::before,
+.bar::after {
+  position: relative;
+  display: block;
+  content: '';
+  width: 30px;
+  height: 4px;
+  background-color: brown;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.bar::before {
+  top: -10px;
+}
+
+.bar::after {
+  top: 6px;
+}
+
+.container[aria-expanded='true'] .bar {
+  background-color: transparent;
+}
+
+.container[aria-expanded='true'] .bar::before {
+  transform: rotate(45deg);
+  top: 0px;
+}
+
+.container[aria-expanded='true'] .bar::after {
+  transform: rotate(-45deg);
+  top: -4px;
+}
