@@ -8,7 +8,7 @@
   background-color: transparent;
   align-items: center;
   justify-content: center;
-  margin: 1rem;
+  margin: var(--hamMrgn);
   cursor: pointer;
 }
 
