@@ -8,7 +8,7 @@
   height: 100vh;
   width: fit-content;
   background-color: var(--navBg);
-  transition: left 0.3s ease-in-out;
+  transition: left 0.45s ease-in-out;
 }
 
 .container ul {
@@ -18,7 +18,7 @@
 }
 
 .container li {
-  margin-top: var(--hamMrgn);
+  margin-bottom: var(--hamMrgn);
 }
 
 .container a {

@@ -3,7 +3,7 @@
   --height: calc(var(--width) * 0.774193548);
   position: absolute;
   right: 0;
-  margin: 1rem 1.5rem;
+  margin: 1.5rem 1.8rem;
   width: var(--width);
   height: var(--height);
   border: none;
