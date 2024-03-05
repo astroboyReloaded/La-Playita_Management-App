@@ -8,7 +8,6 @@ const Menu = () => {
 
   const toggleMenu = () => {
     setOpen(!isOpen);
-    console.log('toggleMenu');
   };
 
   return (
