@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import Hamburger from './Hamburger';
+import Navigation from './Nav';
 import menu from './menu.module.css';
-
-const routes = [
-  { path: '/actualizar-inventario', name: 'Actualizar Inventario' },
-  { path: '/reportes', name: 'Reportes' },
-  { path: '/administrar-usuarios', name: 'Administrar Usuarios' },
-];
 
 const Menu = () => {
   const [isOpen, setOpen] = useState(false);
@@ -18,23 +12,13 @@ const Menu = () => {
   };
 
   return (
-    <>
+    <div className={menu.units}>
       <Hamburger
         toggle={toggleMenu}
         open={isOpen}
       />
-      <nav
-        className={menu.container}
-      >
-        <ul>
-          {routes.map((route) => (
-            <li key={route.name}>
-              <NavLink to={route.path}>{route.name}</NavLink>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </>
+      <Navigation open={isOpen} />
+    </div>
   );
 };
 

@@ -1,0 +1,32 @@
+.container {
+  position: relative;
+  top: calc(var(--navPadding) * -1);
+  left: -50%;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: fit-content;
+  background-color: turquoise;
+  transition: left 0.3s ease-in-out;
+}
+
+.container ul {
+  list-style: none;
+  margin: 0;
+  padding: var(--navPadding);
+}
+
+.container li {
+  margin-top: var(--hamMrgn);
+}
+
+.container a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.container[data-open='true'] {
+  left: 0;
+}

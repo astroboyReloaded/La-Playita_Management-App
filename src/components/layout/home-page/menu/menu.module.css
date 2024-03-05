@@ -1,4 +1,5 @@
-.container {
-  display: flex;
-  flex-direction: column;
+.units {
+  --hamWidth: 30px;
+  --hamMrgn: 1rem;
+  --navPadding: calc((var(--hamMrgn) * 2) + var(--hamWidth))
 }
