@@ -1,13 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
-import HomePage from './components/layout/home-page/HomePage';
+import Home from './components/home/Home';
 import NoMatch from './components/NoMatch';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
+        <Route index element={<Home />} />
         <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>

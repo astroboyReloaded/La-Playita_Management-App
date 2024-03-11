@@ -48,6 +48,10 @@ The app allows for the owner to create, edit and delete users and asign rolls to
 - Users can clock-out from the same clock-in icon button.
 
 
+### The Password UI:
+
+
+
 ### The Create User UI:
 
 - The UI propmts the User to input a valid password to access the main-screen.

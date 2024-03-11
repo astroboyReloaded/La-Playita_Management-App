@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getAllStaff } from '../db/staffDBUtils';
 
-const serversSlice = createSlice({
+const staffSlice = createSlice({
   name: 'servers',
   initialState: {
-    servers: JSON.parse(localStorage.getItem('servers')) || [],
+    servers: getAllStaff() || [],
   },
   reducers: {
     addNewServer: (state, { payload }) => {
@@ -12,8 +13,6 @@ const serversSlice = createSlice({
         name: payload.name,
         password: payload.password,
         roll: payload.roll,
-        isLogged: false,
-        logs: [],
       };
       state.servers.push(newServer);
       localStorage.setItem('servers', JSON.stringify(state.servers));
@@ -51,19 +50,6 @@ const serversSlice = createSlice({
       });
       localStorage.setItem('servers', JSON.stringify(state.servers));
     },
-    logOut: (state, { payload }) => {
-      state.servers = state.servers.map((server) => {
-        if (server.id === payload.id) {
-          server.logs[server.logs.length - 1].logout = Date.now();
-          return {
-            ...server,
-            isLogged: false,
-          };
-        }
-        return server;
-      });
-      localStorage.setItem('servers', JSON.stringify(state.servers));
-    },
   },
 });
 
@@ -72,6 +58,6 @@ export const {
   removeServer,
   logIn,
   logOut,
-} = serversSlice.actions;
+} = staffSlice.actions;
 
-export default serversSlice.reducer;
+export default staffSlice.reducer;
