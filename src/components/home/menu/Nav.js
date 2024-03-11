@@ -5,7 +5,7 @@ import nav from './nav.module.css';
 const routes = [
   { path: '/actualizar-inventario', name: 'Actualizar Inventario' },
   { path: '/reportes', name: 'Reportes' },
-  { path: '/administrar-usuarios', name: 'Administrar Usuarios' },
+  { path: '/staff', name: 'Administrar Staff' },
 ];
 
 const Navigation = ({ open }) => (
