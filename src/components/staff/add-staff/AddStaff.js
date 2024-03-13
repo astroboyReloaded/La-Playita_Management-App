@@ -1,3 +1,4 @@
+import React from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import addStaff from './addStaff.module.css';
 import FullName from './FullName';
@@ -5,6 +6,7 @@ import FullName from './FullName';
 const AddStaff = () => {
   const methods = useForm();
   const onSubmit = (data) => console.log(data);
+  console.log('addStaff');
 
   return (
     <section className={addStaff.container}>

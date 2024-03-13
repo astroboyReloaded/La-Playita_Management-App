@@ -1,4 +1,5 @@
-import AddStaff from './add-staff/forms/AddStaff';
+import React from 'react';
+import AddStaff from './add-staff/AddStaff';
 import staff from './staff.module.css';
 
 const Staff = () => {
