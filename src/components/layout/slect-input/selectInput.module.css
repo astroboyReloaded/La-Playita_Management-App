@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding-block: 0.5rem
+}
+
+.container select {
+  display: inline;
+  margin-top: 0.5rem;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+}
+
+.container select[aria-invalid="true"] {
+  border-color: red;
+}
+
+.container small {
+  margin-left: 0.5rem;
+  color: red;
+}

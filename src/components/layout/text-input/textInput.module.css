@@ -1,0 +1,24 @@
+.container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.container input {
+  width: 21ch;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.container input[aria-invalid='true'] {
+  outline: 1px solid red;
+}
+
+.container small {
+  color: red;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+}
