@@ -6,9 +6,9 @@ import { firstName, lastName, role } from '../utils/validateAddStaff';
 
 const FullName = () => {
   const { formState: { isValid } } = useFormContext();
+  console.log('isValid', isValid);
   return (
     <fieldset id="fullName">
-      {isValid && <i style={{ color: 'green' }}>✓</i>}
       <legend>Nombre y Rol</legend>
       <TextInput {...firstName} />
       <TextInput {...lastName} />

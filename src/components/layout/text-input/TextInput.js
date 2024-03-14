@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useFormContext } from 'react-hook-form';
 import textInput from './textInput.module.css';
+import ValidationError from '../validation-error/ValidationError';
 
 const TextInput = ({
   id,
@@ -42,16 +43,11 @@ const TextInput = ({
           }}
           aria-invalid={wasVisited && invalid}
         />
-        {(
-          wasVisited
-          && errors[name]?.message
-        ) && (
-        <small>
-          <i aria-hidden="true">
-            &lt;--&nbsp;
-          </i>
-            {errors[name].message}
-        </small>
+        {wasVisited && (
+          <ValidationError
+            errorMessage={errors[name]?.message}
+            isValid={!invalid}
+          />
         )}
       </span>
     </div>

@@ -3,7 +3,6 @@ export const firstName = {
   name: 'first',
   label: 'Nombre(s)',
   type: 'text',
-  placeholder: 'nombre(s)',
   validation: {
     required: 'Campo necesario.',
     minLength: {
@@ -11,7 +10,7 @@ export const firstName = {
       message: 'Este nombre está muy corto!',
     },
     pattern: {
-      value: /^[A-Z][a-z]*$/,
+      value: /^[A-Z][a-z]*(?: [A-Z][a-z]*)?$/,
       message: 'La primera con mayúscula.',
     },
   },
@@ -20,9 +19,8 @@ export const firstName = {
 export const lastName = {
   id: 'lN',
   name: 'last',
-  label: 'Apellidos',
+  label: 'Apellido(s)',
   type: 'text',
-  placeholder: 'primer apellido',
   validation: {
     required: 'Campo necesario.',
     maxLength: {
@@ -30,7 +28,7 @@ export const lastName = {
       message: 'No tan largo!.',
     },
     pattern: {
-      value: /^[A-Z][a-z]*$/,
+      value: /^[A-Z][a-z]*(?: [A-Z][a-z]*)?$/,
       message: 'La primera con mayúscula.',
     },
   },

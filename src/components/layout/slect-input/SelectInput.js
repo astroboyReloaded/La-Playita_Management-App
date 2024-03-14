@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useFormContext } from 'react-hook-form';
 import selectInput from './selectInput.module.css';
+import ValidationError from '../validation-error/ValidationError';
 
 const SelectInput = ({
   id,
@@ -27,9 +28,6 @@ const SelectInput = ({
     setWasVisited(true);
   };
 
-  const error = errors[inputName];
-  console.log('error', error);
-
   return (
     <div className={selectInput.container}>
       <label htmlFor={id}>
@@ -41,6 +39,7 @@ const SelectInput = ({
           id={id}
           name={inputName}
           onBlur={handleBlur}
+          onClick={() => { trigger(inputName); }}
           aria-invalid={wasVisited && invalid}
         >
           <option>
@@ -55,13 +54,11 @@ const SelectInput = ({
             </option>
           ))}
         </select>
-        {(errors[inputName] && wasVisited) && (
-          <small>
-            <i aria-hidden="true">
-              &lt;--&nbsp;
-            </i>
-              {errors[inputName].message}
-          </small>
+        {wasVisited && (
+          <ValidationError
+            errorMessage={errors[inputName]?.message}
+            isValid={!invalid}
+          />
         )}
       </span>
     </div>
