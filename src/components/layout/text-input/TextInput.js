@@ -6,7 +6,7 @@ import ValidationError from '../validation-error/ValidationError';
 
 const TextInput = ({
   id,
-  name,
+  inputName,
   label,
   type,
   validation,
@@ -18,11 +18,11 @@ const TextInput = ({
     formState: { errors },
   } = useFormContext({
     defaultValues: {
-      [name]: '',
+      [inputName]: '',
     },
   });
-  const { ref } = register(name);
-  const { invalid } = getFieldState(name);
+  const { ref } = register(inputName);
+  const { invalid } = getFieldState(inputName);
   const [wasVisited, setWasVisited] = useState(false);
 
   return (
@@ -32,20 +32,20 @@ const TextInput = ({
       </label>
       <span>
         <input
-          {...register(name, validation)}
+          {...register(inputName, validation)}
           id={id}
-          name={name}
+          name={inputName}
           type={type}
           ref={ref}
           onBlur={() => { setWasVisited(true); }}
           onKeyUp={async () => {
-            await trigger(name);
+            await trigger(inputName);
           }}
           aria-invalid={wasVisited && invalid}
         />
         {wasVisited && (
           <ValidationError
-            errorMessage={errors[name]?.message}
+            errorMessage={errors[inputName]?.message}
             isValid={!invalid}
           />
         )}
@@ -56,10 +56,9 @@ const TextInput = ({
 
 TextInput.propTypes = {
   id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  inputName: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
   validation: PropTypes.object.isRequired,
 };
 
