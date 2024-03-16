@@ -33,34 +33,33 @@ const SelectInput = ({
       <label htmlFor={id}>
         {`${label}:`}
       </label>
-      <span>
-        <select
-          {...register(inputName, validation)}
-          id={id}
-          name={inputName}
-          onBlur={handleBlur}
-          onClick={() => { trigger(inputName); }}
-          aria-invalid={wasVisited && invalid}
-        >
-          <option>
-            Selecciona uno
+      <select
+        {...register(inputName, validation)}
+        id={id}
+        name={inputName}
+        onBlur={handleBlur}
+        onClick={() => { trigger(inputName); }}
+        onSubmit={handleBlur}
+        aria-invalid={wasVisited && invalid}
+      >
+        <option>
+          Selecciona uno
+        </option>
+        {selectOptions.map((option) => (
+          <option
+            key={option}
+            value={option}
+          >
+            {option}
           </option>
-          {selectOptions.map((option) => (
-            <option
-              key={option}
-              value={option}
-            >
-              {option}
-            </option>
-          ))}
-        </select>
-        {wasVisited && (
-          <ValidationError
-            errorMessage={errors[inputName]?.message}
-            isValid={!invalid}
-          />
-        )}
-      </span>
+        ))}
+      </select>
+      {wasVisited && (
+        <ValidationError
+          errorMessage={errors[inputName]?.message}
+          isValid={!invalid}
+        />
+      )}
     </div>
   );
 };

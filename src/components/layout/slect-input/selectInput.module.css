@@ -1,21 +1,33 @@
 .container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    'label .'
+    'select message';
   padding-block: 0.5rem
 }
 
+.container label {
+  grid-area: label;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
 .container select {
-  display: inline;
+  grid-area: select;
+  width: fit-content;
   margin-top: 0.5rem;
   border-radius: 0.25rem;
   padding: 0.5rem;
+  font-size: 1rem;
 }
 
 .container select[aria-invalid="true"] {
   border-color: red;
 }
 
-.container small {
-  margin-left: 0.5rem;
-  color: red;
+.container span {
+  grid-area: message;
 }

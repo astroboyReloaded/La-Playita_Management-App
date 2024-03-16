@@ -2,7 +2,7 @@
 .container {
   position: absolute;
   top: 0;
-  left: -50%;
+  left: -60%;
   display: flex;
   flex-direction: column;
   height: 100vh;

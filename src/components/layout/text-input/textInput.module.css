@@ -1,11 +1,18 @@
+.container {
+  display: grid;
+  grid-template-columns: 0.91fr 1fr 1fr;
+  grid-template-areas: 'label input error';
+}
+
 .container label {
-  display: block;
-  margin-bottom: 0.5rem;
+  grid-area: label;
   font-size: 1rem;
+  margin: auto 0.5rem auto auto;
 }
 
 .container input {
-  width: 21ch;
+  grid-area: input;
+  width: 100%;
   padding: 0.5rem;
   margin: 0.5rem 0;
   border: 1px solid #ccc;
@@ -17,8 +24,10 @@
   outline: 1px solid red;
 }
 
-.container small {
-  color: red;
-  font-size: 0.8rem;
-  margin-left: 0.5rem;
+.container input[type="number"]::-webkit-inner-spin-button,
+.container input[type="number"]::-webkit-outer-spin-button,
+.container input[type="number"]::-webkit-inner-spin-button,
+.container input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
