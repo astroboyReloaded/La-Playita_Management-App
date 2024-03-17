@@ -6,7 +6,6 @@ let DB;
 const initStaffDB = () => new Promise((res, rej) => {
   const req = window.indexedDB.open(DB_NAME, DB_VERSION);
   req.onerror = (e) => {
-    console.log(`Error initiating ${DB_NAME}`, e.target.error);
     rej(e.target.errorCode);
   };
   req.onsuccess = (e) => {
@@ -16,8 +15,14 @@ const initStaffDB = () => new Promise((res, rej) => {
   req.onupgradeneeded = (e) => {
     DB = e.target.result;
     const store = DB.createObjectStore(staff, { keyPath: 'id' });
-    store.createIndex('name', 'name', { unique: false });
     store.createIndex('role', 'role', { unique: false });
+    store.createIndex('first', 'first', { unique: false });
+    store.createIndex('last', 'last', { unique: false });
+    store.createIndex('phone', 'phone', { unique: true });
+    store.createIndex('email', 'email', { unique: true });
+    store.createIndex('staffName', 'staffName', { unique: true });
+    store.createIndex('password', 'password', { unique: false });
+    console.log('initStaffDB upgrade');
   };
 });
 
@@ -40,7 +45,7 @@ export const getAllStaff = async () => {
   }
 };
 
-export const addStaff = async (member) => {
+export const addNewStaff = async (member) => {
   await initStaffDB();
   try {
     const tx = DB.transaction(staff, 'readwrite')

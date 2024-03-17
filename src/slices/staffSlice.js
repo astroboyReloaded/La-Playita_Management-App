@@ -1,63 +1,86 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { getAllStaff } from '../db/staffDBUtils';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { getAllStaff, addNewStaff } from '../db/staffDBUtils';
+
+const initialState = {
+  staff: [],
+  loading: false,
+  error: null,
+};
+
+export const fetchStaff = createAsyncThunk(
+  'staff/fetchStaff',
+  async (_, { rejectWithValue }) => {
+    try {
+      const staff = await getAllStaff();
+      return staff;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  },
+);
 
 const staffSlice = createSlice({
-  name: 'servers',
-  initialState: {
-    servers: getAllStaff() || [],
-  },
+  name: 'staff',
+  initialState,
   reducers: {
-    addNewServer: (state, { payload }) => {
-      const newServer = {
-        id: payload.id,
-        name: payload.name,
+    addStaff: (state, { payload }) => {
+      const newStaff = {
+        id: Date.now(),
+        role: payload.role,
+        first: payload.first,
+        last: payload.last,
+        phone: payload.phone,
+        email: payload.email,
+        staffName: payload.staffName,
         password: payload.password,
-        roll: payload.roll,
       };
-      state.servers.push(newServer);
-      localStorage.setItem('servers', JSON.stringify(state.servers));
+      state.staff.push(newStaff);
+      try {
+        addNewStaff(newStaff);
+      } catch (err) {
+        state.error = err;
+      }
+      console.log(state);
     },
-    edditServer: (state, { payload }) => {
-      state.servers = state.servers.map((server) => {
-        if (server.id === payload.id) {
+    editStaff: (state, { payload }) => {
+      state.staff = state.staff.map((member) => {
+        if (member.id === payload.id) {
           return {
-            ...server,
+            ...member,
             ...payload,
           };
         }
-        return server;
+        return member;
       });
-      localStorage.setItem('servers', JSON.stringify(state.servers));
+      localStorage.setItem('staff', JSON.stringify(state.staff));
     },
-    removeServer: (state, { payload }) => {
-      state.servers = state.servers.map((server) => server.id !== payload.id);
-      localStorage.setItem('servers', JSON.stringify(state.servers));
+    removeStaff: (state, { payload }) => {
+      state.staff = state.staff.map((member) => member.id !== payload.id);
+      localStorage.setItem('staff', JSON.stringify(state.staff));
     },
-    logIn: (state, { payload }) => {
-      state.servers = state.servers.map((server) => {
-        if (server.id === payload.id) {
-          server.logs.push({
-            login: Date.now(),
-            logout: null,
-          });
-          return {
-            ...server,
-            isLogged: true,
-            cashier: [],
-          };
-        }
-        return server;
-      });
-      localStorage.setItem('servers', JSON.stringify(state.servers));
-    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchStaff.pending, (state) => ({
+      ...state,
+      loading: true,
+    }));
+    builder.addCase(fetchStaff.fulfilled, (state, { payload }) => ({
+      ...state,
+      staff: payload,
+      loading: false,
+    }));
+    builder.addCase(fetchStaff.rejected, (state, { payload }) => ({
+      ...state,
+      error: payload,
+      loading: false,
+    }));
   },
 });
 
 export const {
-  addNewServer,
-  removeServer,
-  logIn,
-  logOut,
+  addStaff,
+  editStaff,
+  removeStaff,
 } = staffSlice.actions;
 
 export default staffSlice.reducer;

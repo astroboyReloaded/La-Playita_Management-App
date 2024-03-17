@@ -10,7 +10,7 @@ export const firstName = {
       message: 'Este nombre está muy corto!',
     },
     pattern: {
-      value: /^[A-Z][a-zñ]*(?: [A-Z][a-zñ]*)?$/,
+      value: /^[A-Z][a-zñáéíóú]*(?: [A-Z][a-zñáéíóú]*)?$/,
       message: 'La primera con mayúscula.',
     },
   },
@@ -28,7 +28,7 @@ export const lastName = {
       message: 'No tan largo!.',
     },
     pattern: {
-      value: /^[A-Z][a-zñ]*(?: [A-Z][a-zñ]*)?$/,
+      value: /^[A-Z][a-zñáéíóú]*(?: [A-Z][a-zñáéíóú]*)?$/,
       message: 'La primera con mayúscula.',
     },
   },
@@ -47,7 +47,7 @@ export const role = {
 
 export const cellphone = {
   id: 'cl',
-  inputName: 'cellphone',
+  inputName: 'phone',
   label: 'Celular',
   type: 'tel',
   validation: {
@@ -85,7 +85,7 @@ export const staffName = {
       message: 'Debe tener de 2 a 16 caracteres.',
     },
     pattern: {
-      value: /^[A-Z][a-zñ]*(?: [A-Z][a-zñ]*)?$/,
+      value: /^[A-Z][a-zñáéíóú]*(?: [A-Z]+)?$/,
       message: 'La primera con mayúscula.',
     },
   },
@@ -93,12 +93,9 @@ export const staffName = {
 
 export const staffPassword = {
   id: 'sP',
-  inputName: 'staffPassword',
+  inputName: 'password',
   label: 'Crea tu contraseña de 5 dígitos',
   type: 'number',
-  defaultValues: {
-    staffPassword: '',
-  },
   maxLength: 5,
   validation: {
     required: 'Debes crear una contraseña.',
@@ -127,12 +124,9 @@ export const confirmPassword = {
   inputName: 'confirmPassword',
   label: 'Confirma tu Contraseña',
   type: 'number',
-  defaultValues: {
-    confirmPassword: '',
-  },
   maxLength: 5,
   validation: {
     required: 'Debes confirmar tu contraseña.',
-    validate: (value, { staffPassword }) => value === staffPassword || 'Las contraseñas no coinciden.',
+    validate: (value, { password }) => value === password || 'Las contraseñas no coinciden.',
   },
 };

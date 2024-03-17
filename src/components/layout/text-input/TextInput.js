@@ -17,11 +17,7 @@ const TextInput = ({
     trigger,
     getFieldState,
     formState: { errors },
-  } = useFormContext({
-    defaultValues: {
-      [inputName]: '',
-    },
-  });
+  } = useFormContext();
   const { ref } = register(inputName);
   const { invalid } = getFieldState(inputName);
   const [wasVisited, setWasVisited] = useState(false);

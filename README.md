@@ -103,3 +103,7 @@ The app allows for the owner to create, edit and delete users and asign rolls to
 - The Servers can see how many of each Dish they have sold, how many of each section, how many total dishes, and how much. The UI shows how much morevthey need to sale to get to the next level of commission, and what the commission would be if they at least get to the minimmum for that level.
 
 - The Owner and Manager can see all of these data for each Server, including Bar.
+
+## Future Features:
+
+- Select multiple roles.

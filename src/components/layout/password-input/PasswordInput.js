@@ -8,17 +8,19 @@ const PasswordInput = ({
   id,
   inputName,
   label,
-  defaultValues,
   maxLength,
   validation,
+  markAsValid,
 }) => {
   const {
     register,
+    watch,
     getFieldState,
     trigger,
     formState: { errors },
-  } = useFormContext({ defaultValues });
+  } = useFormContext();
   const { ref } = register(inputName);
+  const value = watch(inputName);
   const { invalid } = getFieldState(inputName);
   const [wasVisited, setWasVisited] = useState(false);
 
@@ -33,8 +35,6 @@ const PasswordInput = ({
     }
   };
 
-  if (wasVisited && !invalid) console.log('valid:', !invalid);
-
   return (
     <div className={textInput.container}>
       <label htmlFor={id}>
@@ -47,8 +47,9 @@ const PasswordInput = ({
         type="password"
         ref={ref}
         onKeyDown={handleKeyDown}
-        onKeyUp={async () => {
-          await trigger(inputName);
+        onKeyUp={(e) => {
+          trigger(inputName);
+          if (value.length >= 5) markAsValid(e);
         }}
         onBlur={() => { setWasVisited(true); }}
         onSubmit={() => { setWasVisited(true); }}
@@ -71,13 +72,14 @@ PasswordInput.propTypes = {
   inputName: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  defaultValues: PropTypes.object.isRequired,
   maxLength: PropTypes.number,
   validation: PropTypes.object.isRequired,
+  markAsValid: PropTypes.func,
 };
 
 PasswordInput.defaultProps = {
   maxLength: 30,
+  markAsValid: (e) => console.log(e.target, 'markAsValid'),
 };
 
 export default PasswordInput;
